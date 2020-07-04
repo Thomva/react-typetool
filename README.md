@@ -9,7 +9,6 @@ React component to simulate typing. You can customize the caret by calling the c
 ## Install
 
 ```bash
-npm install --save react-typetool
 npm install react-typetool --save
 ```
 
@@ -17,12 +16,10 @@ npm install react-typetool --save
 
 ```jsx
 import React, { Component } from 'react'
-import MyComponent from 'react-typetool'
-import 'react-typetool/dist/index.css'
 import Typer from 'react-typetool'
+
 class Example extends Component {
   render() {
-    return <MyComponent />
     return <Typer text="Text to type." />
   }
 }
