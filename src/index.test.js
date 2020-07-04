@@ -1,7 +1,7 @@
-import { ExampleComponent } from '.'
+import { Typer } from '.'
 
-describe('ExampleComponent', () => {
+describe('Typer', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(Typer).toBeTruthy()
   })
 })
