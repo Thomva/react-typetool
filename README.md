@@ -15,8 +15,8 @@ npm install react-typetool --save
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
-import Typer from 'react-typetool'
+import React, { Component } from 'react';
+import Typer from 'react-typetool';
 
 class Example extends Component {
   render() {
