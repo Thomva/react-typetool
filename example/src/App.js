@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import { ExampleComponent } from 'react-typetool'
-import 'react-typetool/dist/index.css'
+import { Typer } from 'react-typetool';
+// import 'react-typetool/dist/index.css'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return <Typer text="Typertext" />
 }
 
-export default App
+export default App;
