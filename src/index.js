@@ -127,7 +127,9 @@ export const Typer = ({
     >
       {textToShow}
       <div
-        className={`typer__caret${shouldShowCaret ? '' : ' typer__caret--hide'}`}
+        className={`typer__caret${
+          shouldShowCaret ? '' : ' typer__caret--hide'
+        }`}
         ref={caretRef}
         style={noDefaultStyle ? {} : caretStyle}
       ></div>
