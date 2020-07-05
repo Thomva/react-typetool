@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 export const Typer = ({
   text = '',
   classes,
-  noDefaultStyle = false,
+  useDefaultStyle = true,
   startStep = 0,
   stepIntervalMS = 200,
   blink = true,
@@ -173,7 +173,7 @@ export const Typer = ({
   return (
     <div
       className={`typer${!!classes ? ` ${classes}` : ''}`}
-      style={noDefaultStyle ? {} : typerStyle}
+      style={useDefaultStyle ? typerStyle : {}}
     >
       {textToShow}
       <div
@@ -181,7 +181,7 @@ export const Typer = ({
           shouldShowCaret ? '' : ' typer__caret--hide'
         }`}
         ref={caretRef}
-        style={noDefaultStyle ? {} : caretStyle}
+        style={useDefaultStyle ? caretStyle : {}}
       ></div>
     </div>
   );
