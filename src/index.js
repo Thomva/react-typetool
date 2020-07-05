@@ -4,7 +4,7 @@ export const Typer = ({
   text = '',
   classes,
   noDefaultStyle = false,
-  setStep = 0,
+  startStep = 0,
   stepIntervalMS = 200,
   blink = true,
   blinkIntervalMS = 500,
@@ -18,7 +18,7 @@ export const Typer = ({
   startInstantly = true,
 }) => {
   const [textToShow, setTextToShow] = useState('');
-  const [currentStep, setCurrentStep] = useState(setStep);
+  const [currentStep, setCurrentStep] = useState(startStep);
   const [shouldShowCaret, setShouldShowCaret] = useState(showCaret);
   const [finishedTyping, setFinishedTyping] = useState(false);
   const caretRef = useRef(null);
@@ -80,7 +80,7 @@ export const Typer = ({
 
   // Resets steps and finishedTyping
   const reset = () => {
-    setCurrentStep(0);
+    setCurrentStep(startStep);
     setFinishedTyping(false);
   }
 
@@ -106,8 +106,8 @@ export const Typer = ({
 
   // Update step when property changes
   useEffect(() => {
-    setCurrentStep(setStep);
-  }, [setStep]);
+    setCurrentStep(startStep);
+  }, [startStep]);
 
   // Update caret when property changes
   useEffect(() => {
