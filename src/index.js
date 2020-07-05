@@ -10,9 +10,10 @@ export const Typer = ({
   showCaret = true,
   getCaretRef,
   noDefaultStyle = false,
+  setStep = 0,
 }) => {
   const [textToShow, setTextToShow] = useState('');
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(setStep);
   const [shouldShowCaret, setShouldShowCaret] = useState(showCaret);
   const [finishedTyping, setFinishedTyping] = useState(false);
   const caretRef = useRef(null);
