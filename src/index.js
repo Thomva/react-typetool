@@ -9,6 +9,7 @@ export const Typer = ({
   onFinish,
   showCaret = true,
   getCaretRef,
+  noDefaultStyle = false,
 }) => {
   const [textToShow, setTextToShow] = useState('');
   const [currentStep, setCurrentStep] = useState(0);
@@ -115,14 +116,14 @@ export const Typer = ({
 
   return (
     <div
-      className={`typer ${!!classes ? ` ${classes}` : ''}`}
-      style={typerStyle}
+      className={`typer${!!classes ? ` ${classes}` : ''}`}
+      style={noDefaultStyle ? {} : typerStyle}
     >
       {textToShow}
       <div
-        className={`typer__caret${!shouldShowCaret && ' typer__caret--hide'}`}
+        className={`typer__caret${shouldShowCaret ? '' : ' typer__caret--hide'}`}
         ref={caretRef}
-        style={caretStyle}
+        style={noDefaultStyle ? {} : caretStyle}
       ></div>
     </div>
   );
