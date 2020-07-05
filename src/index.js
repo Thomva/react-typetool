@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 export const Typer = ({
-  text,
+  text = '',
   stepIntervalMS = 200,
   classes,
   blink = true,
