@@ -30,6 +30,7 @@ const App = () => {
         <Typer text='Fast blinking caret' blinkIntervalMS={100} loop={true} />
         <Typer text='No blinking caret' blink={false} loop={true} />
         <Typer text='No caret' showCaret={false} loop={true} />
+        <Typer text='Start from step 5' startStep={5} loop={true} />
         <div className='withButton'>
           <Typer
             text={`Don't loop`}
