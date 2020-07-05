@@ -45,6 +45,11 @@ export const Typer = ({
     if (getCaretRef) getCaretRef(caretRef);
   }, [getCaretRef, caretRef]);
 
+  // Update step when property changes
+  useEffect(() => {
+    setCurrentStep(setStep);
+  }, [setStep]);
+
   // Update caret when property changes
   useEffect(() => {
     setShouldShowCaret(showCaret);
