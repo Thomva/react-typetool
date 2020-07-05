@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 export const Typer = ({
   text,
@@ -7,10 +7,15 @@ export const Typer = ({
   blink = true,
   blinkIntervalMS = 500,
   onFinish,
+  onStart,
   showCaret = true,
   getCaretRef,
   noDefaultStyle = false,
   setStep = 0,
+  loop = false,
+  loopIntervalMS = 2000,
+  replay = false,
+  startInstantly = true,
 }) => {
   const [textToShow, setTextToShow] = useState('');
   const [currentStep, setCurrentStep] = useState(setStep);
@@ -39,50 +44,15 @@ export const Typer = ({
     showCaret && setShouldShowCaret(true);
   };
 
-  // Get a reference of the caret
-  useEffect(() => {
-    if (!caretRef) return;
-    if (getCaretRef) getCaretRef(caretRef);
-  }, [getCaretRef, caretRef]);
+  // Start typing
+  const startTyping = useCallback(() => {
+    // Run the onStart callback when typing starts
+    if (onStart) onStart();
 
-  // Update step when property changes
-  useEffect(() => {
-    setCurrentStep(setStep);
-  }, [setStep]);
-
-  // Update caret when property changes
-  useEffect(() => {
-    setShouldShowCaret(showCaret);
-  }, [showCaret]);
-
-  useEffect(() => {
-    if (!finishedTyping) return;
-
-    // Run the onFinish callback when typing has ended
-    if (onFinish) onFinish();
-  }, [finishedTyping]);
-
-  useEffect(() => {
-    // Always show the caret when the 'blink' property changes
-    forceShowCaret();
-
-    // Don't set blikInterval when 'blink' or 'showCaret' property is false
-    if (!blink || !showCaret) return;
-
-    // Set blinkInterval
-    const blinkInterval = setInterval(() => {
-      setShouldShowCaret((prev) => !prev);
-    }, blinkIntervalMS);
-
-    // Clear blinkInterval on unmount
-    return () => {
-      clearInterval(blinkInterval);
-    };
-  }, [blinkIntervalMS, blink, showCaret]);
-
-  useEffect(() => {
     // Set the type interval
-    const typeInterval = setInterval(() => {
+    let typeInterval;
+
+    typeInterval = setInterval(() => {
       setCurrentStep((step) => {
         // Increase the step when it's smaller than the length of the full text
         if (step < text.length) {
@@ -107,6 +77,86 @@ export const Typer = ({
       clearInterval(typeInterval);
     };
   }, [stepIntervalMS, text]);
+
+  // Resets steps and finishedTyping
+  const reset = () => {
+    setCurrentStep(0);
+    setFinishedTyping(false);
+  }
+
+  // Start typing when startInstantly is true
+  useEffect(() => {
+    if (!startInstantly) return;
+    startTyping();
+  }, [startInstantly]);
+
+  // Replay whe the replay property is true
+  useEffect(() => {
+    if (!replay) return;
+    reset();
+    startTyping();
+    replay = false;
+  }, [replay, reset]);
+
+  // Get a reference of the caret
+  useEffect(() => {
+    if (!caretRef) return;
+    if (getCaretRef) getCaretRef(caretRef);
+  }, [getCaretRef, caretRef]);
+
+  // Update step when property changes
+  useEffect(() => {
+    setCurrentStep(setStep);
+  }, [setStep]);
+
+  // Update caret when property changes
+  useEffect(() => {
+    setShouldShowCaret(showCaret);
+  }, [showCaret]);
+
+  // Finish typing
+  useEffect(() => {
+    if (!finishedTyping) return;
+
+    let loopTimeout;
+
+    if (loop) {
+      // Wait
+      loopTimeout = setTimeout(() => {
+        // Reset
+        reset();
+
+        // Start typing
+        startTyping();
+      }, loopIntervalMS);
+    }
+
+    // Run the onFinish callback when typing has ended
+    if (onFinish) onFinish();
+
+    // Clear loopTimeout on unmount
+    return () => {
+      clearTimeout(loopTimeout)
+    };
+  }, [finishedTyping]);
+
+  useEffect(() => {
+    // Always show the caret when the 'blink' property changes
+    forceShowCaret();
+
+    // Don't set blikInterval when 'blink' or 'showCaret' property is false
+    if (!blink || !showCaret) return;
+
+    // Set blinkInterval
+    const blinkInterval = setInterval(() => {
+      setShouldShowCaret((prev) => !prev);
+    }, blinkIntervalMS);
+
+    // Clear blinkInterval on unmount
+    return () => {
+      clearInterval(blinkInterval);
+    };
+  }, [blinkIntervalMS, blink, showCaret]);
 
   // Update the string every step
   useEffect(() => {
