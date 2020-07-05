@@ -27,11 +27,11 @@ export const Typer = ({
 
   // The default caretStyle
   const caretStyle = {
-    width: '.14rem',
+    width: '2px',
     height: '1.2rem',
     backgroundColor: 'black',
     marginLeft: '.14rem',
-    marginBottom: '0.1rem',
+    marginBottom: '0.06rem',
   };
 
   // Show the caret
