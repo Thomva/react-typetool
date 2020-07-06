@@ -31,7 +31,7 @@ prop|optional|type|description|default|example
 |--|--|--|--|--|--|
 |`text`|yes|string|Text to type||`'Hello earthlings!'`|
 |`classes`|yes|string|Classes to add to the component||`'introTyper'`|
-|`defaultStyle`|yes|boolean|Apply default style? (Set false to style with your own CSS) |`true`|`false`|
+|`useDefaultStyle`|yes|boolean|Apply default style? (Set false to style with your own CSS) |`true`|`false`|
 |`startStep`|yes|number|Index of string character to start from|`0`|`5`|
 |`stepIntervalMS`|yes|number|Time between each character in milliseconds|`200`|`240`|
 |`blink`|yes|boolean|Should the caret blink?|`true`|`false`|
