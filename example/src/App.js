@@ -16,6 +16,13 @@ const App = () => {
     setButtonBText('Replay');
   };
 
+  const getCustomCaretRef = (ref) => {
+    ref.current.style.width = '4px';
+    ref.current.style.height = '20px';
+    ref.current.style.borderRadius = '20px';
+    ref.current.style.backgroundColor = '#087e8bff';
+  }
+
 
   return (
     <div className='app'>
@@ -31,6 +38,7 @@ const App = () => {
         <Typer text='No blinking caret' blink={false} loop={true} />
         <Typer text='No caret' showCaret={false} loop={true} />
         <Typer text='Start from step 5' startStep={5} loop={true} />
+        <Typer text='Custom style' getCaretRef={getCustomCaretRef} loop={true} />
         <div className='withButton'>
           <Typer
             text={`Don't loop`}
