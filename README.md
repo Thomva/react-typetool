@@ -1,12 +1,16 @@
-# react-typetool
+<h1 align="center">
+  react-typetool
+</h1>
 
-> Type animation for React
+<h4 align="center">Type animation for React | <a href="https://thomva.github.io/react-typetool" target="_blank">React Typetool</a></h4>
 
-[![NPM](https://img.shields.io/npm/v/react-typetool.svg)](https://www.npmjs.com/package/react-typetool)
+<p align="center">
+  <a href="https://www.npmjs.com/package/react-typetool" rel="nofollow"><img src="https://img.shields.io/npm/v/react-typetool.svg?style=flat-square" alt="npm version" data-canonical-src="https://img.shields.io/npm/v/react-typetool.svg?style=flat-square" style="max-width:100%;"></a>
+</p>
 
-[React Typetool](https://thomva.github.io/react-typetool/)
 
-React component to simulate typing. You can customize the caret by calling the caret reference.
+> React component to simulate typing. You can customize the caret by calling the caret reference.
+
 
 ## Install
 
